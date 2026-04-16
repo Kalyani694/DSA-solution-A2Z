@@ -1,0 +1,125 @@
+# 🔄 Reverse a Number
+## Problem Link
+
+👉 https://leetcode.com/problems/reverse-integer/description/
+## 🧩 Problem Statement
+
+Given an integer `n`, return the integer formed by reversing its digits.
+
+---
+
+## 📌 Examples
+
+### Example 1
+
+```
+Input: n = 25
+Output: 52
+```
+
+### Example 2
+
+```
+Input: n = 123
+Output: 321
+```
+
+---
+
+## 💡 Approach (Logic)
+
+To reverse a number:
+
+1. Extract the last digit using modulo `% 10`
+2. Add it to the reversed number after multiplying the current result by `10`
+3. Remove the last digit from the original number using `/ 10`
+4. Repeat until the number becomes `0`
+
+---
+
+## 🔍 Dry Run
+
+Input: `n = 123`
+
+| Step | n   | Last Digit | Reversed Number |
+| ---- | --- | ---------- | --------------- |
+| 1    | 123 | 3          | 3               |
+| 2    | 12  | 2          | 32              |
+| 3    | 1   | 1          | 321             |
+
+Output: `321`
+
+---
+
+## 🧾 Pseudocode
+
+```
+function reverseNumber(n):
+    revNum = 0
+
+    while n != 0:
+        lastDigit = n % 10
+        revNum = revNum * 10 + lastDigit
+        n = n / 10
+
+    return revNum
+```
+
+---
+
+## 🔎 Code Explanation
+
+* `n % 10` → Extracts the last digit
+* `revNum * 10` → Shifts digits left
+* `+ ld` → Adds extracted digit
+* `n / 10` → Removes last digit
+
+---
+
+## ⚡ Complexity Analysis
+
+* **Time Complexity:** `O(log₁₀ n)`
+* **Space Complexity:** `O(1)`
+
+---
+
+## ⚠️ Edge Cases
+
+* Negative numbers (e.g., `-123 → -321`)
+* Overflow (important in interviews)
+
+---
+
+## 🚀 Optimized Version (Handles Overflow)
+
+```java
+class Solution {
+    public int reverseNumber(int n) {
+        int revNum = 0;
+
+        while (n != 0) {
+            int ld = n % 10;
+
+            if (revNum > Integer.MAX_VALUE / 10 || revNum < Integer.MIN_VALUE / 10) {
+                return 0;
+            }
+
+            revNum = revNum * 10 + ld;
+            n = n / 10;
+        }
+
+        return revNum;
+    }
+}
+```
+
+---
+
+## 🎯 Key Takeaway
+
+Reversing a number is all about:
+
+* Extracting digits
+* Rebuilding the number in reverse order
+
+---
